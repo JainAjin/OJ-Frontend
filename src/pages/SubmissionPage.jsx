@@ -9,6 +9,7 @@ const SubmissionPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
    const navigate = useNavigate();
+   const API_URL = import.meta.env.VITE_API_BASE_URL;
 
   // The useEffect hook runs once when the component mounts to fetch data.
   useEffect(() => {
@@ -21,7 +22,7 @@ const SubmissionPage = () => {
         }
 
         // Make an authenticated GET request to your backend endpoint.
-        const response = await fetch(`http://localhost:8084/submit/attempts/${UserID}`, {
+        const response = await fetch(`${API_URL}/submit/attempts/${UserID}`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }

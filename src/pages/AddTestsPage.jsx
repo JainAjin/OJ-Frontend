@@ -8,6 +8,7 @@ const AddTestsPage = () => {
   const [input, setInput] = useState('');
   const [expectedOutput, setExpectedOutput] = useState('');
   const [isSample, setIsSample] = useState(false);
+  const API_URL = import.meta.env.VITE_API_BASE_URL;
 
   // State for handling feedback to the user
   const [error, setError] = useState('');
@@ -27,7 +28,7 @@ const AddTestsPage = () => {
       if (!token) {
         throw new Error('You must be logged in to add a test case.');
       }
-      const ProblemResponse = await fetch(`http://localhost:8084/problem/${problemId}`, {
+      const ProblemResponse = await fetch(`${API_URL}/problem/${problemId}`, {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
                 const data = await ProblemResponse.json();
@@ -40,7 +41,7 @@ const AddTestsPage = () => {
       };
 
       // 2. Make an authenticated POST request to the backend
-      const response = await fetch('http://localhost:8084/test/addtest', {
+      const response = await fetch(`${API_URL}/test/addtest`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

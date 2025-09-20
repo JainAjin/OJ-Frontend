@@ -8,7 +8,7 @@ const AddProblemPage = () => {
   const [description, setDescription] = useState('');
   const [timeLimit, setTimeLimit] = useState(1000); // Default to 1000 ms
   const [memoryLimit, setMemoryLimit] = useState(256); // Default to 256 KB
-  
+  const API_URL = import.meta.env.VITE_API_BASE_URL;
   // State for handling feedback to the user
   const [error, setError] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
@@ -37,7 +37,7 @@ const AddProblemPage = () => {
       };
 
       // 2. Make an authenticated POST request to the backend
-      const response = await fetch('http://localhost:8084/problem/addProblem', {
+      const response = await fetch(`${API_URL}/problem/addProblem`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

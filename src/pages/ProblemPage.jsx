@@ -12,6 +12,7 @@ const ProblemPage = () => {
     const [problem, setProblem] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
+    const API_URL = import.meta.env.VITE_API_BASE_URL;
 
     // State for the code editor and submission form
     const [code, setCode] = useState('');
@@ -31,7 +32,7 @@ const ProblemPage = () => {
                 }
 
                 // Note: The URL is updated to match your backend structure.
-                const response = await fetch(`http://localhost:8084/problem/${id}`, {
+                const response = await fetch(`${API_URL}/problem/${id}`, {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
 
@@ -73,7 +74,7 @@ const ProblemPage = () => {
                 throw new Error("Authentication error. Please log in again.");
             }
 
-            const response = await fetch('http://localhost:8084/submit', {
+            const response = await fetch(`${API_URL}/submit`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

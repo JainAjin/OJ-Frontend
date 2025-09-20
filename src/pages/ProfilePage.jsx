@@ -9,6 +9,7 @@ const ProfilePage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
    const navigate = useNavigate();
+   const API_URL = import.meta.env.VITE_API_BASE_URL;
 
   useEffect(() => {
     const fetchUserProfile = async () => {
@@ -21,7 +22,7 @@ const ProfilePage = () => {
         // This endpoint should be designed on your backend to return the profile
         // of the user associated with the provided JWT.
         const userId= localStorage.getItem('User_ID');
-        const response = await fetch(`http://localhost:8084/auth/user/${userId}`, {
+        const response = await fetch(`${API_URL}/auth/user/${userId}`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }

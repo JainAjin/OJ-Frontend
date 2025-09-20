@@ -9,6 +9,7 @@ const ProblemListPage = () => {
  const [problems, setProblems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const API_URL = import.meta.env.VITE_API_BASE_URL;
 
   // The useEffect hook runs once when the component mounts to fetch data.
   useEffect(() => {
@@ -22,7 +23,7 @@ const ProblemListPage = () => {
 
         // 2. Make an authenticated GET request to the backend.
         // Make sure this URL matches your backend's endpoint for all problems.
-        const response = await fetch('http://localhost:8084/problem', {
+        const response = await fetch(`${API_URL}/problem`, {
           headers: {
             // 3. Include the JWT in the Authorization header.
             // 'Authorization': `Bearer ${token}`

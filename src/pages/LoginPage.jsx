@@ -8,6 +8,7 @@ const LoginPage = ({setToken}) => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate(); // Hook for programmatic navigation
+  const API_URL = import.meta.env.VITE_API_BASE_URL;
 
   // This function is called when the user submits the form
   const handleSubmit = async (e) => {
@@ -16,7 +17,7 @@ const LoginPage = ({setToken}) => {
 
     try {
       // Make a POST request to your backend's login endpoint
-      const response = await fetch('http://localhost:8084/auth/login', {
+      const response = await fetch(`${API_URL}/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json', // Tell the backend we're sending JSON

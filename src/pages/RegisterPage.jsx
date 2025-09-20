@@ -10,6 +10,7 @@ const RegisterPage = () => {
   const [error, setError] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const navigate = useNavigate(); // Hook for programmatic navigation
+  const API_URL = import.meta.env.VITE_API_BASE_URL;
 
   // This function is called when the user clicks the "REGISTER" button
   const handleSubmit = async (e) => {
@@ -19,7 +20,7 @@ const RegisterPage = () => {
 
     try {
       // 1. Make a POST request to your backend registration endpoint
-      const response = await fetch('http://localhost:8084/auth/signIn', {
+      const response = await fetch(`${API_URL}/auth/signIn`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json', // Tell the backend we are sending JSON data
